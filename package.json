@@ -1,0 +1,50 @@
+{
+  "name": "unboxed-assignment",
+  "version": "1.0.0",
+  "description": "API to extract product info from product URLs using OpenAI",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node -r dotenv/config src/index.js dotenv_config_path=.env.production",
+    "dev": "nodemon -r dotenv/config src/index.js dotenv_config_path=.env.development",
+    "test": "node -r dotenv/config test/index.js dotenv_config_path=.env.test",
+    "check:format": "prettier . --check",
+    "check:lint": "eslint . --ext .js",
+    "check": "npm run check:format && npm run check:lint",
+    "fix:format": "prettier . --write",
+    "fix:lint": "eslint . --fix --ext .js",
+    "fix": "npm run fix:format && npm run fix:lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chime3/unboxed-assignment.git"
+  },
+  "keywords": [
+    "OpenAI",
+    "HTML",
+    "Product"
+  ],
+  "author": "Donald",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chime3/unboxed-assignment/issues"
+  },
+  "homepage": "https://github.com/chime3/unboxed-assignment#readme",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "openai": "^4.95.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.25.1",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "globals": "^16.0.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.5.3"
+  }
+}
