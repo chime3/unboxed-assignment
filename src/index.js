@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const productRoutes = require('./routes/productRoutes');
 const config = require('./config/config');
 const logger = require('./config/logger');
 
@@ -17,10 +18,18 @@ if (!config.isProduction) {
   });
 }
 
+// Routes
+app.use('/api', productRoutes);
+
 // Root route
 app.get('/', (req, res) => {
-  res.status(200);
-  res.send('Welcome!');
+  res.json({
+    message: 'API to extract product info from product URLs using OpenAI',
+    environment: config.env,
+    endpoints: {
+      parseProduct: 'POST /api/parse-product',
+    },
+  });
 });
 
 // Start the server
