@@ -1,5 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+
+// Swagger
+const swaggerUi =  require('swagger-ui-express');
+const swaggerSpecs = require('./config/swagger');
+
 const productRoutes = require('./routes/productRoutes');
 const config = require('./config/config');
 const logger = require('./config/logger');
@@ -18,6 +23,9 @@ if (!config.isProduction) {
   });
 }
 
+// Swagger document
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
 // Routes
 app.use('/api', productRoutes);
 
@@ -28,6 +36,7 @@ app.get('/', (req, res) => {
     environment: config.env,
     endpoints: {
       parseProduct: 'POST /api/parse-product',
+      document: '/api-docs',
     },
   });
 });
@@ -38,5 +47,6 @@ app.listen(config.port, error => {
     logger.error("Server can't start", error);
   } else {
     logger.info(`Server running in ${config.env} mode on port ${config.port}`);
+    logger.info(`Swagger documentation available at http://localhost:${config.port}/api-docs`);
   }
 });
