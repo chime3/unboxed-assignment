@@ -91,6 +91,7 @@ const processHtml = html => {
  * @returns Promise object of structured data
  */
 const extractWithOpenAI = async (url, apiKey) => {
+  // TODO: Create an Env var
   // Limit content size to prevent token limit errors
   const MAX_CONTENT_LENGTH = 5000; // Equivalent to 2 full screens of text on a large desktop display
 
